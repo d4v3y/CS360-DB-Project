@@ -1,0 +1,9 @@
+Feb 25, 2021 - Meeting
+
+- Matt has made the database
+
+Use Keller's team project as a reference
+
+Matt - database data entry generator
+Dawson - login/index
+Me - Start with patient portal
