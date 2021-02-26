@@ -4,6 +4,6 @@ Feb 25, 2021 - Meeting
 
 Use Keller's team project as a reference
 
-Matt - database data entry generator
-Dawson - login/index
+Matt - Database data entry generator
+Dawson - Research hosting/set-up php
 Me - Start with patient portal
