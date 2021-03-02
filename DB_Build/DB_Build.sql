@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `Insurance` (
   `Name` varchar(25) NOT NULL,
   `Annual Premium` int(6) NOT NULL,
   `Annual Deductible` int(4) NOT NULL,
-  `Coverage` int(3) NOT NULL,
+  `Coverage` varchar(3) NOT NULL,
   `Lifetime Coverage` int(9) NOT NULL,
   PRIMARY KEY (`Patient ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
