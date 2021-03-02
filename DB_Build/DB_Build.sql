@@ -28,8 +28,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `Drugs` (
   `Drug ID` int(10) NOT NULL,
-  `Name` varchar(40) NOT NULL,
-  `Type` varchar(20) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Type` varchar(100) NOT NULL,
   PRIMARY KEY (`Drug ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

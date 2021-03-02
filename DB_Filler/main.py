@@ -4,6 +4,14 @@ import argparse
 from faker import Faker
 from dateutil.relativedelta import relativedelta
 import datetime as date
+import panda as pd
+import numpy as np
+
+# Took drug name and administration type from excel spreadsheet from FDA
+product = pd.read_excel('product.xls', index_col=None, usecols="D,G")
+# Grab only the name and admonstration type
+df1 = pd.DataFrame(product, columns=['PROPRIETARYNAME', 'DOSAGEFORMNAME'])
+
 #Gathering Input
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="random-id-gen.py")
@@ -98,3 +106,36 @@ for i in range(0,args.amount):
                     "Error Inserting into PatientInfo: One of hostname, username, password, database name, or patients flag is missing!")
                 break
 
+        elif args.drugs:
+
+            #pick a random row
+            info = df1.sample()
+            #assign the name and type
+            name = info.PROPRIETARYNAME.to_numpy()
+            type = info.DOSAGEFORMNAME.to_numpy()
+
+            #Generating Data
+            #Make a Unique DrugID
+            ran_DrugID = str(random.randint(0, 9223372036854775807))
+            ran_DrugID = ran_DrugID.zfill(20)
+            #Get name and type from list
+            ran_Name = ''.join(name)
+            ran_Type = ''.join(type)
+
+            if args.verbose:
+                print(ran_DrugID)
+                print(ran_Name)
+                print(ran_Type)
+
+            if args.host and args.port and args.user and args.password and args.database:
+                 mycursor.execute(insert_Drugs,
+                            (int(ran_DrugID),
+                            ran_Name,
+                            ran_Type))
+
+                 mydb.commit()
+
+            else:
+                print(
+                "Error Inserting into PatientInfo: One of hostname, username, password, database name, or patients flag is missing!")
+                break
