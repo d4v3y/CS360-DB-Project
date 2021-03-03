@@ -12,6 +12,8 @@ product = pd.read_excel('product.xls', index_col=None, usecols="D,G")
 # Grab only the name and admonstration type
 df1 = pd.DataFrame(product, columns=['PROPRIETARYNAME', 'DOSAGEFORMNAME'])
 
+symptom_arr = ['N/A', 'Mild', 'Severe', 'Critical']
+
 #Gathering Input
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="random-id-gen.py")
@@ -22,6 +24,7 @@ parser.add_argument("-patients", default=False, action="store_true", dest="Patie
 parser.add_argument("-drugs",default=False,action="store_true",dest="Drugs",help="Set if you need to insert into Drugs table")
 parser.add_argument("-insurance",default=False,action='store_true',dest="Insurance",help="set if you need to insert into insurance information")
 parser.add_argument("-interactions", default=False,action='store_true',dest="Interactions",help="set if you need interaction information")
+parser.add_argument("-lab", default = False, action='store_true',dest="Lab", help="set if you need Lab information" )
 parser.add_argument("-host", type=str, required=False, default=None, dest="host", help="Hostname for DB")
 parser.add_argument("-port", type=int, required=False, default=None, dest="port", help="Port number for DB")
 parser.add_argument("-user", type=str, required=False, default=None, dest="user", help="Username for DB")
@@ -41,7 +44,8 @@ if args.host:
 insert_Patients = """INSERT INTO Patients(PatientID, Name, Age, Annual_Income, SSN, City, State, Zip, InsuranceID, PharmacyID, Date_Of_Birth) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 insert_Drugs = """INSERT INTO Drugs(DrugID,Name,Type) VALUES (%s, %s, %s)"""
 insert_Insurance = """INSERT INTO Insurance(Name, Annual Premium, Annual Deductible, Coverage, Lifetime Coverage) VALUES (%s, %s, %s, %s, %s)"""
-
+insert_Interactions = """INSERT INTO Interactions(Interaction ID, Symptoms) VALUES (%s, %s)"""
+insert_Lab = """INSERT INTO Lab(Lab ID, Name, Cost, Copay) VALUES (%s, %s, %s, %s)"""
 random.seed()
 fake =Faker()
 
@@ -176,4 +180,66 @@ for i in range(0,args.amount):
             else:
                 print("Error Inserting into Insurance: One of hostname, username, password, database name, or patients flag is missing!")
 
-        elif
+        elif args.interactions:
+            # Importing Data
+            sqlquery1 = """INSERT INTO Interactions(Patient ID) SELECT PatientID FROM Patients """
+            mycursor.execute(sqlquery1)
+
+            sqlquery2 = """INSERT INTO Interactions(DrugID) SELECT DrugID FROM Drugs """
+            mycursor.execute(sqlquery2)
+
+
+
+            results = mycursor.fetchall()
+            if results:
+                # Generating Data
+                ran_InteractionID = str(random.randint(0, 9223372036854775807))
+                ran_InteractionID = ran_InteractionID.zfill(20)
+                symptom = np.random.choice(symptom_arr,1)
+                ran_symptom =''.join(symptom)
+
+                if args.verbose:
+                    print(ran_InteractionID)
+                    print(ran_symptom)
+
+
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Drugs,
+                                     (int(ran_InteractionID),
+                                      ran_symptom))
+
+                mydb.commit()
+
+            else:
+                print("Error Inserting into Interaction: One of hostname, username, password, database name, drugs, or patients flag is missing!")
+
+        elif args.lab:
+            # Importing Data
+            sqlquery1 = """INSERT INTO Lab(Insurance ID) SELECT InsuranceID FROM Patients """
+            mycursor.execute(sqlquery1)
+
+            results = mycursor.fetchall()
+            if results:
+                # Generating Data
+                ran_LabID = str(random.randint(0, 9223372036854775807))
+                ran_LabID = ran_LabID.zfill(20)
+                ran_lname = fake.company()
+                ran_lcost = str(random.randint(50, 9983))
+                ran_lcopay = str(random.randint(0, 50))
+
+                if args.verbose:
+                    print(ran_LabID)
+                    print(ran_lname)
+                    print(ran_lcost)
+                    print(ran_lcopay)
+
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Drugs,
+                                (int(ran_LabID),
+                                ran_lname,
+                                ran_lcost,
+                                ran_lcopay))
+                mydb.commit()
+
+            else:
+                print("Error Inserting into Labs: One of hostname, username, password, database name, or patients flag is missing!")
