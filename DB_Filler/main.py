@@ -24,7 +24,11 @@ parser.add_argument("-patients", default=False, action="store_true", dest="Patie
 parser.add_argument("-drugs",default=False,action="store_true",dest="Drugs",help="Set if you need to insert into Drugs table")
 parser.add_argument("-insurance",default=False,action='store_true',dest="Insurance",help="set if you need to insert into insurance information")
 parser.add_argument("-interactions", default=False,action='store_true',dest="Interactions",help="set if you need interaction information")
+parser.add_argument("-medication", default=False,action='store_true',dest="Medication",help="set if you need medication cost information")
 parser.add_argument("-lab", default = False, action='store_true',dest="Lab", help="set if you need Lab information" )
+parser.add_argument("-purchases", default=False, action='store_true',dest="Purchases", help= "set if you need purchase information")
+parser.add_argument("-pharmacy", default=False, action='store_true', dest="Pharmacy", help="set if you need pharmacy information")
+parser.add_argument("-provider", default=False, action='store_true',dest= "Provider", help="set if you need provider information")
 parser.add_argument("-host", type=str, required=False, default=None, dest="host", help="Hostname for DB")
 parser.add_argument("-port", type=int, required=False, default=None, dest="port", help="Port number for DB")
 parser.add_argument("-user", type=str, required=False, default=None, dest="user", help="Username for DB")
@@ -42,10 +46,14 @@ if args.host:
 
 # SQL Statements for tables"
 insert_Patients = """INSERT INTO Patients(PatientID, Name, Age, Annual_Income, SSN, City, State, Zip, InsuranceID, PharmacyID, Date_Of_Birth) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-insert_Drugs = """INSERT INTO Drugs(DrugID,Name,Type) VALUES (%s, %s, %s)"""
+insert_Drugs = """INSERT INTO Drugs(DrugID,Name,Type,Cost) VALUES (%s, %s, %s, %s)"""
 insert_Insurance = """INSERT INTO Insurance(Name, Annual Premium, Annual Deductible, Coverage, Lifetime Coverage) VALUES (%s, %s, %s, %s, %s)"""
 insert_Interactions = """INSERT INTO Interactions(Interaction ID, Symptoms) VALUES (%s, %s)"""
-insert_Lab = """INSERT INTO Lab(Lab ID, Name, Cost, Copay) VALUES (%s, %s, %s, %s)"""
+insert_Lab = """INSERT INTO Lab(Lab ID, Name, Cost, Copay) VALUES (%s, %s, %s, %s, %s)"""
+insert_Medication = """INSERT INTO Medication(Co-pay) VALUES (%s)"""
+insert_Purchases = """INSERT INTO Purchases(Purchase ID, Referral ID, Quantity, Cost) VALUES (%s, %s, %s, %s)"""
+insert_Pharmacy = """INSERT INTO Pharmacy(Pharmacy ID, Name, City, State, Zip) VALUES (%s, %s, %s, %s, %s)"""
+insert_provider = """INSERT INTO Provider(Provider ID, Name, Cost, Co-pay) VALUES (%s, %S, %s, %s)"""
 random.seed()
 fake =Faker()
 
@@ -128,17 +136,20 @@ for i in range(0,args.amount):
             #Get name and type from list
             ran_DName = ''.join(name)
             ran_Type = ''.join(type)
+            ran_dcost = str(random.randint(5, 9983))
 
             if args.verbose:
                 print(ran_DrugID)
                 print(ran_DName)
                 print(ran_Type)
+                print(ran_dcost)
 
             if args.host and args.port and args.user and args.password and args.database:
                  mycursor.execute(insert_Drugs,
                             (int(ran_DrugID),
                             ran_DName,
-                            ran_Type))
+                            ran_Type,
+                            ran_dcost))
 
                  mydb.commit()
 
@@ -168,7 +179,7 @@ for i in range(0,args.amount):
                     print(ran_lifetime_coverage)
 
                 if args.host and args.port and args.user and args.password and args.database:
-                    mycursor.execute(insert_Drugs,
+                    mycursor.execute(insert_Insurance,
                          (ran_cname,
                           ran_annual_premium,
                           ran_annual_deductible,
@@ -234,7 +245,7 @@ for i in range(0,args.amount):
                     print(ran_lcopay)
 
                 if args.host and args.port and args.user and args.password and args.database:
-                    mycursor.execute(insert_Drugs,
+                    mycursor.execute(insert_Lab,
                                 (int(ran_LabID),
                                 ran_lname,
                                 ran_lcost,
@@ -243,3 +254,111 @@ for i in range(0,args.amount):
 
             else:
                 print("Error Inserting into Labs: One of hostname, username, password, database name, or patients flag is missing!")
+
+        elif args.medication:
+            sqlquery1 = """INSERT INTO Medication(Drug ID, Name, Cost) SELECT DrugID, Dname, dcost FROM Drugs """
+            mycursor.execute(sqlquery1)
+
+            sqlquery2 = """INSERT INTO Medication(Insurance ID) SELECT InsuranceID FROM Patients """
+            mycursor.execute(sqlquery2)
+
+            results = mycursor.fetchall()
+
+            if results:
+                ran_dcopay = str(random.randint(5, 50))
+
+                if args.verbose:
+                    print(ran_dcopay)
+
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Medication, (ran_dcopay))
+                mydb.commit()
+
+            else:
+                print("Error Inserting into Medication: One of hostname, username, password, database name, drugs, or patients flag is missing!")
+
+
+        elif args.purchases:
+            sqlquery1 = """INSERT INTO Purchases(Patient ID, Insurance ID) SELECT PatientID,InsuranceID FROM Patients"""
+            mycursor.execute(sqlquery1)
+            sqlquery2 = """INSERT INTO Purchases(Interaction ID, Drug ID) SELECT Interaction ID, Drug ID FROM Interactions WHERE Patient ID = Patient ID"""
+            mycursor.execute(sqlquery2)
+            sqlquery3 = """INSERT INTO Purchases(Pharmacy ID) SELECT Pharmacy ID FROM Pharmacy"""
+            results=mycursor.fetchall()
+            if results:
+                ran_PurchaseID = str(random.randint(0, 9223372036854775807))
+                ran_PurchaseID = ran_PurchaseID.zfill(20)
+                ran_ReferralID = str(random.randint(0, 9223372036854775807))
+                cpay= """SELECT Co-Pay FROM Medications WHERE Insurance ID = Insurance ID"""
+                ran_Quantity   = str(random.randint(0,100))
+                ran_Cost = mycursor.execute(cpay) * Quantity
+
+                if args.verbose:
+                    print(ran_PurchaseID)
+                    print(ran_ReferralID)
+                    print(ran_Quantity)
+                    print(ran_Cost)
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Purchases, (ran_PurchaseID,
+                                                        ran_ReferralID,
+                                                        ran_Quantity,
+                                                        ran_Cost))
+                mydb.commit()
+
+            else:
+                print("Error Inserting into Purchases: One of hostname, username, password, database name, Interactions, Medications, or patients flag is missing!")
+
+        elif args.pharmacy:
+                ran_PharmacyID = str(random.randint(0, 9223372036854775807))
+                ran_PharmacyID = ran_PharmacyID.zfill(20)
+                ran_Pname = fake.company()
+                ran_Pcity = fake.city()
+                ran_Pstate = fake.state()
+                ran_Pzip = fake.zip()
+
+                if args.verbose:
+                    print(ran_PharmacyID)
+                    print(ran_Pname)
+                    print(ran_Pcity)
+                    print(ran_Pstate)
+                    print(ran_Pzip)
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Pharmacy, (ran_PharmacyID,
+                                                        ran_Pname,
+                                                        ran_Pcity,
+                                                        ran_Pstate,
+                                                        ran_Pzip))
+                    mydb.commit()
+                else:
+                    print("Error Inserting into Pharmacy: One of hostname, username, password, or database name")
+
+        elif args.provider:
+            sqlquery1 = """INSERT INTO (Insurance ID) SELECT InsuranceID FROM Patients"""
+            mycursor.execute(sqlquery1)
+
+            results = mycursor.fetchall
+            if results:
+                ran_ProviderID = str(random.randint(0, 9223372036854775807))
+                ran_ProviderID = ran_ProviderID.zfill(20)
+                ran_Hname = fake.company()
+                ran_Hcost = str(random.randint(100, 99837))
+                ran_Hcopay = str(random.randint(10, 998))
+
+                if args.verbose:
+                    print(ran_ProviderID)
+                    print(ran_Hname)
+                    print(ran_Hcost)
+                    print(ran_Hcopay)
+                if args.host and args.port and args.user and args.password and args.database:
+                    mycursor.execute(insert_Provider, (ran_ProviderID,
+                                                        ran_Hname,
+                                                        ran_Hcost,
+                                                        ran_Hcopay))
+                mydb.commit()
+            else:
+                print("Error Inserting into Provider: One of hostname, username, password, database name, or patients")
+
+    except KeyboardInterrupt:
+        mydb.commit()
+        mydb.close()
+
