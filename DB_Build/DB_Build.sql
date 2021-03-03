@@ -120,9 +120,10 @@ CREATE TABLE IF NOT EXISTS `Patients` (
 
 CREATE TABLE IF NOT EXISTS `Pharmacy` (
   `Pharmacy ID` int(10) NOT NULL,
-  `Purchase ID` int(10) NOT NULL,
-  `Drug ID` int(10) NOT NULL,
-  `Interaction ID` int(10) NOT NULL,
+  `Name` varchar(40) NOT NULL,
+  `City` varchar(40) NOT NULL,
+  `State` varchar(40) NOT NULL,
+  'Zip'   varchar(40) NOT NULL,
   PRIMARY KEY (`Pharmacy ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -148,6 +149,7 @@ CREATE TABLE IF NOT EXISTS `Provider` (
 
 CREATE TABLE IF NOT EXISTS `Purchases` (
   `Purchase ID` int(10) NOT NULL,
+  'Pharmacy ID' int(10) NOT NULL,
   `Patient ID` int(10) NOT NULL,
   `Drug ID` int(10) NOT NULL,
   `Quantity` int(3) NOT NULL,
