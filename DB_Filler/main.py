@@ -1,10 +1,11 @@
 import mysql.connector as mysql
+import urllib
 import random
 import argparse
 from faker import Faker
 from dateutil.relativedelta import relativedelta
 import datetime as date
-import panda as pd
+import pandas as pd
 import numpy as np
 
 # Took drug name and administration type from excel spreadsheet from FDA
@@ -52,8 +53,8 @@ insert_Interactions = """INSERT INTO Interactions(Interaction ID, Symptoms) VALU
 insert_Lab = """INSERT INTO Lab(Lab ID, Name, Cost, Copay) VALUES (%s, %s, %s, %s, %s)"""
 insert_Medication = """INSERT INTO Medication(Co-pay) VALUES (%s)"""
 insert_Purchases = """INSERT INTO Purchases(Purchase ID, Referral ID, Quantity, Cost) VALUES (%s, %s, %s, %s)"""
-insert_Pharmacy = """INSERT INTO Pharmacy(Pharmacy ID, Name, City, State, Zip) VALUES (%s, %s, %s, %s, %s)"""
-insert_provider = """INSERT INTO Provider(Provider ID, Name, Cost, Co-pay) VALUES (%s, %S, %s, %s)"""
+insert_Pharmacy = """INSERT INTO Pharmacy(Pharmacy ID, Name, City, State, Zipcode) VALUES (%s, %s, %s, %s, %s)"""
+insert_Provider = """INSERT INTO Provider(Provider ID, Name, Cost, Co-pay) VALUES (%s, %S, %s, %s)"""
 random.seed()
 fake =Faker()
 
@@ -290,8 +291,8 @@ for i in range(0,args.amount):
                 ran_PurchaseID = ran_PurchaseID.zfill(20)
                 ran_ReferralID = str(random.randint(0, 9223372036854775807))
                 cpay= """SELECT Co-Pay FROM Medications WHERE Insurance ID = Insurance ID"""
-                ran_Quantity   = str(random.randint(0,100))
-                ran_Cost = mycursor.execute(cpay) * Quantity
+                ran_Quantity = str(random.randint(0,100))
+                ran_Cost = mycursor.execute(cpay) * ran_Quantity
 
                 if args.verbose:
                     print(ran_PurchaseID)
