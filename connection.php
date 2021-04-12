@@ -1,7 +1,7 @@
 <?php
 $dbhost = "localhost";
 $dbuser = "root";
-$dbpass = "password";
+$dbpass = "";
 $dbname = "cs360project";
 
 if (!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)) {
