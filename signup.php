@@ -9,11 +9,16 @@ session_start();
         // Something was posted
         $user_name = $_POST['user_name'];
         $password = $_POST['password'];
+        $name = $_POST['name'];
+        $street = $_POST['street'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zip = $_POST['zip'];
 
-        if (!empty($user_name) && !empty($password)) {
+        if (!empty($user_name) && !empty($password && !empty($name) && !empty($street) && !empty($city) && !empty($state) && !empty($zip))) {
 
             // Save to database
-            $query = "insert into pharmacy (PharmacyID, Password) values ('$user_name', '$password')";
+            $query = "insert into pharmacy (PharmacyID, Password, Name, Street, City, State, Zip) values ('$user_name', '$password', '$name', '$street', '$city', '$state', '$zip')";
 
             mysqli_query($con, $query);
 
@@ -39,6 +44,11 @@ session_start();
             
             <input type="text" name="user_name"placeholder="Username"><br><br>
             <input type="text" name="password"placeholder="Password"><br><br>
+            <input type="text" name="name"placeholder="Name"><br><br>
+            <input type="text" name="street"placeholder="Street"><br><br>
+            <input type="text" name="city"placeholder="City"><br><br>
+            <input type="text" name="state"placeholder="State"><br><br>
+            <input type="text" name="zip"placeholder="Zip Code"><br><br>
 
             <input type="submit" value="Signup"><br><br>
             <a href="login.php">Click to login</a>
