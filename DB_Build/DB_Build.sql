@@ -6682,7 +6682,6 @@ insert into Referral (`Referral ID`, `Provider ID`, `Physician`, `Symptom`, `Qua
 insert into Referral (`Referral ID`, `Provider ID`, `Physician`, `Symptom`, `Quantity`) values (999, 282, 'Messier', 'Anaphylactic reaction due to unspecified food, sequela', 43);
 insert into Referral (`Referral ID`, `Provider ID`, `Physician`, `Symptom`, `Quantity`) values (1000, 144, 'Minards', 'Other contact with other nonvenomous reptiles', 41);
 
---testing the bot/////
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
