@@ -35,15 +35,16 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Patient Protal Signup</title>
+    <title>My Patient Portal Signup</title>
+    <h1>Sign Up</h1>
 </head>
 <body>
     <div id="box">
         <form method="post">
-            <div style="font-size: 20px;margin: 10px;">Signup</div>
+            <div style="font-size: 20px;margin: 10px;">Please enter your personal information below to get started</div>
             
             <input type="text" name="user_name"placeholder="Username"><br><br>
-            <input type="text" name="password"placeholder="Password"><br><br>
+            <input type="password" name="password"placeholder="Password" minlength="8"><br><br>
             <input type="text" name="name"placeholder="Name"><br><br>
             <input type="text" name="street"placeholder="Street"><br><br>
             <input type="text" name="city"placeholder="City"><br><br>
