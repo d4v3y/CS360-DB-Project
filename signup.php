@@ -15,7 +15,7 @@ session_start();
         $state = $_POST['state'];
         $zip = $_POST['zip'];
 
-        if (!empty($user_name) && !empty($password && !empty($name) && !empty($street) && !empty($city) && !empty($state) && !empty($zip))) {
+        if (!empty($user_name) && !empty($password) && !empty($name) && !empty($street) && !empty($city) && !empty($state) && !empty($zip)) {
 
             // Save to database
             $query = "insert into pharmacy (PharmacyID, Password, Name, Street, City, State, Zip) values ('$user_name', '$password', '$name', '$street', '$city', '$state', '$zip')";
@@ -25,7 +25,7 @@ session_start();
             header("Location: login.php");
             die;
         } else {
-            echo "Please enter some valid information!";
+            echo "Please enter valid information!";
         }
     }
 ?>

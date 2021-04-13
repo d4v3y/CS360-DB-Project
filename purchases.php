@@ -29,8 +29,6 @@ session_start();
         </nav>
     </header>
 
-    <h1>Hello, <?php echo $user_data['Name'];?>!</h1>
-
-    <p>TODO: pull up the purchase info based on the pharmacy look at the referrals patient and insurance info</p>
+    <p>Patient purchase history goes here.</p>
 </body>
 </html>

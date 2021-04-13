@@ -28,9 +28,6 @@ session_start();
             <li><a href="insurance.php">Insurance Info</a></li>
         </nav>
     </header>
-
-    <h1>Hello, <?php echo $user_data['Name'];?>!</h1>
-
-    <p>TODO: pull up the purchase info based on the pharmacy look at the referrals patient and insurance info</p>
+    <p>Insurance information goes here.</p>
 </body>
 </html>
