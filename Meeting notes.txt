@@ -7,3 +7,29 @@ Use Keller's team project as a reference
 Matt - Database data entry generator
 Dawson - Research hosting/set-up php
 Me - Start with patient portal
+
+-------------------------------------------------------------------------------------------
+
+// Future feature match up patient with insurance determined by their annual income
+
+// Pharmacy
+*  welcome screen => pharmcist info
+*  lookup patient => if (access not given) show purchase table else patient table && purchase table 
+*          info first then tab/link to history
+*  transaction => lookup referral to get drug id
+*  calculate cost determined by if they have insurance
+
+// Doctor
+*  check if its the provider table or pharmacy
+
+// TODO
+*  Check box to select if a new pharmacy or provider on signup
+*  Referral table add drug id
+*  Cost percentage by insurance column
+*  Price of drug column
+*  Username column to pharamcy and provider tables
+*  Fix type in referral table
+*  Add logic to auto add new doctor/pharamcy (i.e.append new users)
+*  Access/Permission column to patients
+*  Maybe add patient id to referral???
+*  Explain interactions table a bit more
