@@ -38,6 +38,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Patient Portal Login</title>
+    <link rel="icon" href="health_icon16x16.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="health_icon32x32.png" type="image/png" sizes="32x32">
 </head>
 <body>
     <div id="box">
