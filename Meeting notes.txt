@@ -33,3 +33,10 @@ Me - Start with patient portal
 *  Access/Permission column to patients
 *  Maybe add patient id to referral???
 *  Explain interactions table a bit more
+
+-------------------------------------------------------------------------------------------
+
+*  What is the server version of MySQL
+*  What does this warning mean: Warning: mysqli::mysqli(): Headers and client library minor version mismatch. Headers:50564 Library:100148 in /vols/sdb37/httpdh33_www/html/connection.php on line 8
+*  How to connect two databases. Is it one database with different tables or two completely separate databases?
+
