@@ -4,7 +4,7 @@ session_start();
    include("includes/dbconn.php");
    include("functions.php");
 
-   $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
+   $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
 
    if ($con->connect_error) {
       die("Failed to connect: " . $con->connect_error);
