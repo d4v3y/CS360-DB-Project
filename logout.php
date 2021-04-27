@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SESSION['PharmacyID'])) {
-    unset($_SESSION['PharmacyID']);
+if (isset($_SESSION['Username'])) {
+    unset($_SESSION['Username']);
 }
 
 header("Location: login.php");

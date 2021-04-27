@@ -4,7 +4,7 @@ session_start();
    include("includes/dbconn.php");
    include("functions.php");
 
-   $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
+   $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
    if ($con->connect_error) {
       die("Failed to connect: " . $con->connect_error);
@@ -19,32 +19,35 @@ session_start();
         if (!empty($user_name) && !empty($password)) {
 
             // Read from database
-            $query = "select * 
-                      from Pharmacy p 
-                      where Username = '$user_name' 
-                      UNION
-                      select * 
-                      from Provider v 
-                      where Username = '$user_name'";
+            $query1 = "select * from Pharmacy where Username = '$user_name' limit 1";
+            $query2 = "select * from Provider where Username = '$user_name' limit 1";
+            $result1 = mysqli_query($con, $query1);
+            $result2 = mysqli_query($con, $query2);
             
-            $result = mysqli_query($con, $query);
-            
-            if ($result) {
+            if ($result1) {
              
-                if ($result && mysqli_num_rows($result) > 0) {
-                    $user_data = mysqli_fetch_assoc($result);
+                if ($result1 && mysqli_num_rows($result1) > 0) {
+                    $user_data = mysqli_fetch_assoc($result1);
              
-                    if ($user_data['Password'] === $password && $user_data["UserType"] === "Pharmacist") {
+                    if ($user_data['Password'] === $password) {
+             
                         $_SESSION['Username'] = $user_data['Username'];
                         header("Location: pharmacyHome.php");
                         die;
-                    } else if ($user_data['Password'] === $password && $user_data["UserType"] == "Doctor") {
-                        $_SESSION['Username'] = $user_data['Username'];
-                        header("Location: doctorHome.php");
-                        die;
                     }
                 }
-            }
+            } else if ($result2){
+               if ($result2 && mysqli_num_rows($result2) > 0) {
+                     $user_data = mysqli_fetch_assoc($result2);
+ 
+                     if ($user_data['Password'] === $password) {
+ 
+                         $_SESSION['Username'] = $user_data['Username'];
+                         header("Location: doctorHome.php");
+                         die;
+                     }
+                 }
+             }
             echo "First Wrong username or password!"; 
         } else {
             echo "Second Wrong username or password!";

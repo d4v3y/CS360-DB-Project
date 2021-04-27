@@ -1,10 +1,21 @@
 <?php
 session_start();
 
-    include("connection.php");
+    include("includes/dbconn.php");
     include("functions.php");
 
+    $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
+    
     $user_data = check_login($con);
+
+    $user_name = $_GET['user_name'];
+
+    $dbquery = "select PatientID from Purchases where PharmacyID = 
+                  select PharmacyID from Pharmacy where Username = '$user_name' ";
+
+    $result = mysqli_query($con, $dbquery);
+    $user_data = mysqli_fetch_assoc($result);
+    echo $user_data;
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +40,10 @@ session_start();
         </nav>
     </header>
 
-    <p>Patient purchase history goes here.</p>
+    <p>Show previous patients that dealt has a corrilation with the pharamacy.</p>
+
+     <section>
+     
+     </section>
 </body>
 </html>

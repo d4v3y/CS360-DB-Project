@@ -1,10 +1,17 @@
 <?php
 session_start();
 
-    include("connection.php");
+    include("includes/dbconn.php");
     include("functions.php");
 
+    $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
+
+    if ($con->connect_error) {
+      die("Failed to connect: " . $con->connect_error);
+    }
+ 
     $user_data = check_login($con);
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +22,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="icon" href="/health_icon16x16.png"/ type="image/png" sizes="16x16">
+    <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
+
 
     <title>My Patient Portal</title>
 </head>
@@ -29,8 +40,7 @@ session_start();
         </nav>
     </header>
 
-    <h1>Hello, <?php echo $user_data['Name'];?>!</h1>
+    <h1>Hello, Dr. <?php echo $user_data['Name'];?>!</h1>
 
-    <p>TODO: pull up the purchase info based on the pharmacy look at the referrals patient and insurance info</p>
 </body>
 </html>
