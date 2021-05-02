@@ -45,9 +45,9 @@ session_start();
                     }
                 }
             }
-            echo "First Wrong username or password!"; 
+            echo "Wrong username or password!"; 
         } else {
-            echo "Second Wrong username or password!";
+            echo "Wrong username or password!";
         }
     }
 ?>
@@ -57,21 +57,54 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="icon" href="health_icon16x16.png" type="image/png" sizes="16x16">
     <link rel="icon" href="health_icon32x32.png" type="image/png" sizes="32x32">
+    <link rel="stylesheet" href="css/login.css">
+    
     <title>My Patient Portal Login</title>
 </head>
 <body>
-    <div id="box">
-        <form method="post">
-            <div style="font-size: 20px;margin: 10px;">Login</div>
-            
-            <input type="text" name="user_name" placeholder="Username"><br><br>
-            <input type="password" name="password" placeholder="Password"><br><br>
 
-            <input type="submit" value="Login"><br><br>
-            <a href="signup.php">Click to signup</a>
-        </form>
+    <!-- Page Wrapper -->
+    <div id="page-container">
+
+        <!-- Top Banner -->
+        <nav id="welcome-banner">
+            <a href="login.php">MyHealthPortal</a>
+        </nav>
+
+        <!-- Content Wrapper -->
+        <div id="content-wrap">
+
+            <!-- Login Box -->
+            <div class="card">
+                <form autocomplete="off" method="post">
+                    <div id="box-name">Welcome, Login!</div>
+                    
+                    <div class="group">
+                        <input type="text" name="user_name" required="required" /><span class="highlight"></span><span class="bar"></span>
+                        <label>Username</label>
+                    </div>
+                    <div class="group">
+                        <input type="password" name="password" required="required" /><span class="highlight"></span><span class="bar"></span>
+                        <label>Password</label>
+                    </div>
+    
+                    <div class="btn-box">
+                        <button class="btn btn-login" type="submit">Login</button>
+                    </div>
+
+                    <a id="signup-btn" href="signup.php">Don't have an account? Click to signup</a>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p>Created by Dawson, Matt, and Davey</p>
+        </footer>
     </div>
 </body>
 </html>
