@@ -22,11 +22,11 @@ session_start();
             // Read from database
             $query = "select * 
                       from Pharmacy p 
-                      where PharmacyID = '$user_name' 
+                      where Username = '$user_name' 
                       UNION
                       select * 
                       from Provider v 
-                      where ProviderID = '$user_name'";
+                      where Username = '$user_name'";
             
             $result = mysqli_query($con, $query);
             
@@ -36,11 +36,11 @@ session_start();
                     $user_data = mysqli_fetch_assoc($result);
              
                     if ($user_data['Password'] === $password && $user_data["UserType"] === "Pharmacist") {
-                        $_SESSION['PharmacyID'] = $user_data['PharmacyID'];
+                        $_SESSION['Username'] = $user_data['Username'];
                         header("Location: pharmacyHome.php");
                         die;
                     } else if ($user_data['Password'] === $password && $user_data["UserType"] == "Doctor") {
-                        $_SESSION['ProviderID'] = $user_data['ProviderID'];
+                        $_SESSION['Username'] = $user_data['Username'];
                         header("Location: doctorHome.php");
                         die;
                     }

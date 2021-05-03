@@ -11,7 +11,7 @@ session_start();
       die("Failed to connect: " . $con->connect_error);
     }
  
-     $user_data = check_login($con);
+    $user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@ session_start();
         </nav>
     </header>
 
-    <h1>Hello, Pharmacist <?php echo $user_data['Name'];?>!</h1>
+    <h1>Welcome, <?php echo $user_data['Name'];?> Pharmacy!</h1>
 
 </body>
 </html>
