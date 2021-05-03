@@ -1,10 +1,10 @@
 <?php
 session_start();
-
+    
     error_reporting(0);
     include("includes/dbconn.php");
     include("functions.php");
- 
+
     $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
     if ($con->connect_error) {
@@ -27,21 +27,21 @@ session_start();
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
 
 
-    <title>My Doctor Portal</title>
+    <title>Patient Purchase History</title>
 </head>
 <body>
     <a href="logout.php">Logout</a>
 
     <header>
         <nav>
-            <li><a href="doctorHome.php">Home</a></li>
-            <li><a href="docPatients.php">Patients Info</a></li>
-            <li><a href="docDiagnose.php">Diagnose</a></li>
-            <li><a href="docPrescribe.php">Patient Services</a></li>
+            <li><a href="pharmacyHome.php">Home</a></li>
+            <li><a href="pharmPrescribe.php">Prescribe Medicine</a></li>
+            <li><a href="pharmSell.php">Patient Purchase</a></li>
+            <li><a href="pharmHistory.php">Purchase History</a></li>
         </nav>
     </header>
 
-    <h1>Hello, Dr. <?php echo $user_data['Name'];?>!</h1>
+    <h1>Retrieve the patients purchase history.</h1>
 
 </body>
 </html>

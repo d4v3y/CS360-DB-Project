@@ -1,10 +1,11 @@
 <?php
 session_start();
-
+    
+    error_reporting(0);
     include("includes/dbconn.php");
     include("functions.php");
 
-    $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
+    $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
     if ($con->connect_error) {
       die("Failed to connect: " . $con->connect_error);
@@ -34,8 +35,9 @@ session_start();
     <header>
         <nav>
             <li><a href="pharmacyHome.php">Home</a></li>
-            <li><a href="purchases.php">Purchase History</a></li>
-            <li><a href="insurance.php">Insurance Info</a></li>
+            <li><a href="pharmPrescribe.php">Prescribe Medicine</a></li>
+            <li><a href="pharmSell.php">Patient Purchase</a></li>
+            <li><a href="pharmHistory.php">Purchase History</a></li>
         </nav>
     </header>
 

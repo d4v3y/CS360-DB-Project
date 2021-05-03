@@ -1,10 +1,11 @@
 <?php
 session_start();
-   
+ 
+   error_reporting(0);   
    include("includes/dbconn.php");
    include("functions.php");
 
-   $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
+   $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
    if ($con->connect_error) {
       die("Failed to connect: " . $con->connect_error);
@@ -21,11 +22,11 @@ session_start();
             // Read from database
             $query = "select * 
                       from Pharmacy p 
-                      where Username = '$user_name' 
+                      where PharmacyID = '$user_name' 
                       UNION
                       select * 
                       from Provider v 
-                      where Username = '$user_name'";
+                      where ProviderID = '$user_name'";
             
             $result = mysqli_query($con, $query);
             
@@ -35,11 +36,11 @@ session_start();
                     $user_data = mysqli_fetch_assoc($result);
              
                     if ($user_data['Password'] === $password && $user_data["UserType"] === "Pharmacist") {
-                        $_SESSION['Username'] = $user_data['Username'];
+                        $_SESSION['PharmacyID'] = $user_data['PharmacyID'];
                         header("Location: pharmacyHome.php");
                         die;
                     } else if ($user_data['Password'] === $password && $user_data["UserType"] == "Doctor") {
-                        $_SESSION['Username'] = $user_data['Username'];
+                        $_SESSION['ProviderID'] = $user_data['ProviderID'];
                         header("Location: doctorHome.php");
                         die;
                     }

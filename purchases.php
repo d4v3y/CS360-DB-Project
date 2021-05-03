@@ -4,7 +4,7 @@ session_start();
     include("includes/dbconn.php");
     include("functions.php");
 
-    $con = new mysqli($servername, $username, "", "db2", $sqlport, $socket);
+    $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
     
     $user_data = check_login($con);
 

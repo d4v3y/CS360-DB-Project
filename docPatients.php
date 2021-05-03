@@ -27,7 +27,7 @@ session_start();
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
 
 
-    <title>My Doctor Portal</title>
+    <title>Patient Info</title>
 </head>
 <body>
     <a href="logout.php">Logout</a>
@@ -41,7 +41,7 @@ session_start();
         </nav>
     </header>
 
-    <h1>Hello, Dr. <?php echo $user_data['Name'];?>!</h1>
+    <h1>Retrieve patient information</h1>
 
 </body>
 </html>

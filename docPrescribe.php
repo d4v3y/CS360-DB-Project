@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+   
     error_reporting(0);
     include("includes/dbconn.php");
     include("functions.php");
@@ -27,7 +27,7 @@ session_start();
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
 
 
-    <title>My Doctor Portal</title>
+    <title>Presribe Patient</title>
 </head>
 <body>
     <a href="logout.php">Logout</a>
@@ -41,7 +41,7 @@ session_start();
         </nav>
     </header>
 
-    <h1>Hello, Dr. <?php echo $user_data['Name'];?>!</h1>
+    <h1>Presribe patient with either medicine, tests, or services.</h1>
 
 </body>
 </html>
