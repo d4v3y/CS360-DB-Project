@@ -72,7 +72,7 @@ session_start();
 
         <!-- Top Banner -->
         <nav id="welcome-banner">
-            <a href="login.php">MyHealthPortal</a>
+            <a href="index.php">MyHealthPortal</a>
         </nav>
 
         <!-- Content Wrapper -->

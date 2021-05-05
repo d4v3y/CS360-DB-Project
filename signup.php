@@ -30,14 +30,14 @@ session_start();
                 
                 mysqli_query($con, $query);
 
-                header("Location: login.php");
+                header("Location: index.php");
                 die;
             } else if ($user_type === "Doctor") {
                 
                 $query = "insert into Provider (UserType, Username, Password, Name, Street, City, State, Zip) values ('$user_type', '$user_name', '$password', '$name', '$street', '$city', '$state', '$zip')";
                 mysqli_query($con, $query);
 
-                header("Location: login.php");
+                header("Location: index.php");
                 die;
             }
         } else {
@@ -63,7 +63,7 @@ session_start();
     
         <!-- Top Banner -->
         <nav id="welcome-banner">
-            <a href="login.php">MyHealthPortal</a>
+            <a href="index.php">MyHealthPortal</a>
         </nav>
 
         <!-- Content Wrapper -->
@@ -122,7 +122,7 @@ session_start();
                         <button class="btn btn-login" type="submit">Signup</button>
                     </div>
 
-                    <a id="signup-btn" href="login.php">Already have an account? Click to login</a>
+                    <a id="signup-btn" href="index.php">Already have an account? Click to login</a>
                 </form>
             </div>
             

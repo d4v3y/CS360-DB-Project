@@ -21,7 +21,7 @@ function check_login($con) {
     }
 
     // Redirect to login
-    header("Location: login.php");
+    header("Location: index.php");
     die;
 
 }

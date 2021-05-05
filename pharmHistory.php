@@ -21,7 +21,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/pharmacy.css">
 
     <link rel="icon" href="/health_icon16x16.png"/ type="image/png" sizes="16x16">
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
@@ -30,18 +30,36 @@ session_start();
     <title>Patient Purchase History</title>
 </head>
 <body>
-    <a href="logout.php">Logout</a>
 
-    <header>
-        <nav>
-            <li><a href="pharmacyHome.php">Home</a></li>
-            <li><a href="pharmPrescribe.php">Prescribe Medicine</a></li>
-            <li><a href="pharmSell.php">Patient Purchase</a></li>
-            <li><a href="pharmHistory.php">Purchase History</a></li>
-        </nav>
-    </header>
+    <!-- Page Wrapper -->
+    <div id="page-container">
+        
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="section">
+                <div id="greeting"><span id="greeting-text">Welcome,<br><?php echo $user_data['Name'];?> Pharmacy!</span></div>
+                <div> <a class="item" href="pharmacyHome.php">Home</a></div>
+                <div> <a class="item" href="pharmPrescribe.php">Prescribe Medicine</a></div>
+                <div> <a class="item" href="pharmSell.php">Patient Purchase</a></div>
+                <div> <a class="item" href="pharmHistory.php" id="selected">Purchase History</a></div>
+            </div>
 
-    <h1>Retrieve the patients purchase history.</h1>
+            <div class="section">
+                <div class="btn-box">
+                    <a class="btn btn-logout" href="logout.php">logout</a>
+                </div>
+            </div>
+        </div>
 
+        <!-- Top Banner -->
+        <div id="welcome-banner">
+            <a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer">
+            <p>Created by Dawson, Matt, and Davey</p>
+        </div>
+    </div>
 </body>
 </html>

@@ -21,7 +21,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="./css/doctor.css">
 
     <link rel="icon" href="/health_icon16x16.png"/ type="image/png" sizes="16x16">
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
@@ -30,18 +30,36 @@ session_start();
     <title>Diagnose Patient</title>
 </head>
 <body>
-    <a href="logout.php">Logout</a>
 
-    <header>
-        <nav>
-            <li><a href="doctorHome.php">Home</a></li>
-            <li><a href="docPatients.php">Patients Info</a></li>
-            <li><a href="docDiagnose.php">Diagnose</a></li>
-            <li><a href="docPrescribe.php">Patient Services</a></li>
-        </nav>
-    </header>
+    <!-- Page Wrapper -->
+    <div id="page-container">
+        
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="section">
+                <div id="greeting"><span id="greeting-text">Welcome,<br>Dr. <?php echo $user_data['Name'];?>!</span></div>
+                <div> <a class="item" href="doctorHome.php">Home</a></div>
+                <div> <a class="item" href="docPatients.php">Patient Info</a></div>
+                <div> <a class="item" href="docDiagnose.php" id="selected">Diagnose Patient</a></div>
+                <div> <a class="item" href="docPrescribe.php">Patient Services</a></div>
+            </div>
 
-    <h1>Diagnose patient by checking if they had symptoms from medication</h1>
+            <div class="section">
+                <div class="btn-box">
+                    <a class="btn btn-logout" href="logout.php">logout</a>
+                </div>
+            </div>
+        </div>
 
+        <!-- Top Banner -->
+        <div id="welcome-banner">
+            <a id="logo" href="doctorHome.php">MyHealthPortal</a>
+        </div>
+        
+        <!-- Footer -->
+        <div id="footer">
+            <p>Created by Dawson, Matt, and Davey</p>
+        </div>
+    </div>
 </body>
 </html>

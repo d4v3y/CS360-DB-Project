@@ -2,6 +2,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+	font-family: 'Helvetica', 'Arial', sans-serif;
     }
     
      :before,
@@ -14,7 +15,7 @@
     }
     
     body {
-        background: url("../bg.jpg");
+        background: url("../Graphics/bg.jpg");
         background-position: center center;
         background-repeat: no-repeat;
         background-attachment: fixed;
