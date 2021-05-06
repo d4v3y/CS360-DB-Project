@@ -1,0 +1,14 @@
+ - Need to make the input bars not required on pharmHistory
+ - Need to implement table on pharmHistory into css styling
+ - Formatting for the outputs might need edited on pharmSell
+ - What is "Patient Services" for?
+ - Does docPrescribe go with Patient Services?
+ - Make the ReferralID an auto incrementing column in the referral table? Something like this:
+    CREATE TABLE Referral (
+    ReferralID int NOT NULL AUTO_INCREMENT,
+    Username varchar(255) NOT NULL,
+    PatientID int,
+    Symptom varchar(255),
+    DrugID int,
+    Quantity int,
+    PRIMARY KEY (ReferralID))

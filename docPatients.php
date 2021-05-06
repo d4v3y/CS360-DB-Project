@@ -12,6 +12,69 @@ session_start();
     }
  
     $user_data = check_login($con);
+    $result1 = null;
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST")
+    {
+        $patientFname = $_POST['patient_Fname'];
+        $patientLname = $_POST['patient_Lname'];
+
+        if (!empty($patientFname) && !empty($patientLname))
+        {
+            $query1 = "select *
+                      from Patients p
+                      where `First Name` = '$patientFname' AND `Last Name` = '$patientLname'";
+            $result1 = mysqli_query($con, $query1);
+
+            if (!$result1)
+            {
+                echo "Could not successfully run query from DB: " . mysql_error();
+            }
+            
+            if ($result1)
+            {
+                if ($result1 && mysqli_num_rows($result1) > 0)
+                {
+                    echo"<table border='1'>";
+                    echo"<tr><td>First Name</td><td>Last Name</td><td>Patient ID</td><td>Insurance ID</td><td>Age</td></tr>\n";
+                    while($row = mysqli_fetch_assoc($result1))
+                    {
+                        echo"<tr><td>{$row['First Name']}</td><td>{$row['Last Name']}</td><td>{$row['PatientID']}</td><td>{$row['InsurancID']}</td><td>{$row['Age']}</td></tr>\n";
+                    }
+                    echo"</table>";
+                    //$search_data1 = mysqli_fetch_assoc($result1);
+                }
+            }
+
+            $query2 = "select *
+            from Referral
+            where PatientID IN (
+            select PatientID
+            from Patients p
+            where `First Name` = '$patientFname' AND `Last Name` = '$patientLname')";
+            $result2 = mysqli_query($con, $query2);
+
+            if (!$result2) 
+		    {
+                echo "Could not successfully run query from DB: " . mysql_error();
+            }
+
+		    if ($result2)
+		    {
+		        if ($result2 && mysqli_num_rows($result2) > 0)
+                {
+                    echo"<table border='1'>";
+                    echo"<tr><td>Referral ID</td><td>Patient ID</td><td>Drug ID</td><td>Quantity</td><td>Symptoms</td></tr>\n";
+                    while($row = mysqli_fetch_assoc($result1))
+                    {
+                        echo"<tr><td>{$row['ReferralID']}</td><td>{$row['PatientID']}</td><td>{$row['DrugID']}</td><td>{$row['Quantity']}</td><td>{$row['Symptoms']}</td></tr>\n";
+                    }
+                    echo"</table>";
+                    //$search_data2 = mysqli_fetch_assoc($result2);
+                }
+		    }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +118,25 @@ session_start();
         <div id="welcome-banner">
             <a id="logo" href="doctorHome.php">MyHealthPortal</a>
         </div>
+
+        <div class="card">
+                	<form autocomplete="off" method="post">
+                    		<div id="box-name">Please enter the patient's information below:</div>
+        
+                    		<div class="group">
+                        		<input type="text" name="patient_Fname" required="required" /><span class="highlight"></span><span class="bar"></span>
+                    			<label>First Name</label>
+                            </div>
+                            <div class="group">
+                        		<input type="text" name="patient_Lname" required="required" /><span class="highlight"></span><span class="bar"></span>
+                    			<label>Last Name</label>
+                            </div>
+    
+                    		<div class="btn-box">
+                        		<button class="btn btn-login" type="submit">Submit</button>
+                    		</div>
+                	</form>
+            	</div>
         
         <!-- Footer -->
         <div id="footer">

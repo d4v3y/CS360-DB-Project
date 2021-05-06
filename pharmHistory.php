@@ -33,17 +33,10 @@ session_start();
                 echo "Could not successfully run query from DB: " . mysql_error();
             }
             
-            if (mysql_num_rows($result1) == 0)
-            {
-                echo "No rows found, nothing to print (not sure why this is printing when it works???)";
-            }
-            
             if ($result1)
             {
                 if ($result1 && mysqli_num_rows($result1) > 0)
                 {
-                    echo "Result 1";
-                    
                     echo"<table border='1'>";
                     echo"<tr><td>Referral ID</td><td>Insurance ID</td><td>Drug ID</td><td>Patient ID</td><td>Total Cost</td></tr>\n";
                     while($row = mysqli_fetch_assoc($result1))
@@ -69,17 +62,10 @@ session_start();
                 echo "Could not successfully run query from DB: " . mysql_error();
             }
             
-            if (mysql_num_rows($result2) == 0)
-            {
-                echo "No rows found, nothing to print (not sure why this is printing when it works???)";
-            }
-            
             if ($result2)
             {
                 if ($result2 && mysqli_num_rows($result2) > 0)
                 {
-                    echo "Result 2";
-                    
                     echo"<table border='1'>";
                     echo"<tr><td>Patient ID</td><td>Insurance ID</td><td>Drug ID</td><td>Referral ID</td><td>Total Cost</td></tr>\n";
                     while($row = mysqli_fetch_assoc($result2))
@@ -104,17 +90,10 @@ session_start();
                 echo "Could not successfully run query from DB: " . mysql_error();
             }
             
-            if (mysql_num_rows($result3) == 0)
-            {
-                echo "No rows found, nothing to print (not sure why this is printing when it works???)";
-            }
-            
             if ($result3)
             {
                 if ($result3 && mysqli_num_rows($result3) > 0)
                 {
-                    echo "Result 3";
-
                     echo"<table border='1'>";
                     echo"<tr><td>Patient ID</td><td>Insurance ID</td><td>Drug ID</td><td>Referral ID</td><td>Total Cost</td></tr>\n";
                     while($row = mysqli_fetch_assoc($result3))
@@ -173,7 +152,6 @@ session_start();
                 <a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
             </div>
 
-            <!-- Output Information from Queries -->
             <div id="data-info">
                 <!-- Data Entry Box -->
                 <div class="card">

@@ -23,30 +23,20 @@ session_start();
 
         if (!empty($referralId))
         {
-            echo "1";
             $query1 = "select *
                       from Referral r
                       where ReferralID = '$referralId'";
-            echo "2";
             $result1 = mysqli_query($con, $query1);
-            echo "3";
 
             if (!$result1)
             {
                 echo "Could not successfully run query from DB: " . mysql_error();
             }
             
-            if (mysql_num_rows($result1) == 0)
-            {
-                echo "No rows found, nothing to print";
-            }
-            
             if ($result1)
             {
-                echo "4";
                 if ($result1 && mysqli_num_rows($result1) > 0)
                 {
-                    echo "hello";
                     $search_data1 = mysqli_fetch_assoc($result1);
                 }
 	    	$query2 = "select *
@@ -66,7 +56,6 @@ session_start();
 		    {
 		        if ($result2 && mysqli_num_rows($result2) > 0)
                 {
-                    echo "Made it to result 2"; 
 			        $search_data2 = mysqli_fetch_assoc($result2);
                 }
 		    }
@@ -88,7 +77,6 @@ session_start();
 		        {
 		            if ($result3 && mysqli_num_rows($result3) > 0)
                     {
-                        echo "Made it to result 3"; 
 			            $search_data3 = mysqli_fetch_assoc($result3);
                     }
 		        }
@@ -140,7 +128,6 @@ session_start();
             	<a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
             </div>
 
-            <!-- Output Information from Queries -->
             <div id="data-info">
             	<!-- Data Entry -->
             	<div class="card">
@@ -173,7 +160,7 @@ session_start();
                 <div class="card">
                     <div id="text"><span id="output-information"><br>Patient Information<br>Patient Name: <?php echo $search_data3['Last Name']; echo ", "; echo $search_data3['First Name'];?></span></div>
                     <div id="text"><span id="output-information">Patient Insurance ID: <?php echo $search_data3['InsurancID'];?></span></div>
-                    <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo $search_data3['City']; echo $search_data3['State']; echo $search_data3['Zip'];?></span></div>
+                    <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo $search_data3['City']; echo ", "; echo $search_data3['State']; echo " "; echo $search_data3['Zip'];?></span></div>
                 </div>
     
                 <!-- This Button will eventually write the transaction to the "purchases" database -->
