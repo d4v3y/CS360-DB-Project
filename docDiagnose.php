@@ -18,6 +18,11 @@ session_start();
     if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         $drugName = $_POST['drug_name'];
+        $drugId = $_POST['drug_id'];
+        $quantity = $_POST['quantity'];
+        $userName = $_POST['user_name'];
+        $patientId = $_POST['patient_id'];
+        $symptom = $_POST['symptom'];
 
         if (!empty($drugName))
         {
@@ -44,7 +49,21 @@ session_start();
                     echo"</table>";
                 }
             }
-            //NEED TO IMPLEMENT INSERTING INTO REFERRAL TABLE
+        }
+
+        if (!empty($drugId) && !empty($quantity) && !empty($userName) && !empty($patientId) && !empty($symptom))
+        {
+            $query2 = "INSERT INTO Referral (Username, PatientID, Symptom, DrugID, Quantity)
+                       VALUES ('$userName', $patientId, '$symptom', $drugId, $quantity)";
+            $result2 = mysqli_query($con, $query2);
+
+	        if ($result2)
+	        {
+                echo "New record created successfully";
+            }
+	        else{
+		        echo "Error: " . $query2 . "<br>" . mysqli_error($con);
+	        }
         }
     }
 ?>
