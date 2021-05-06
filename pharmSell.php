@@ -122,7 +122,6 @@ session_start();
             <div class="section">
                 <div id="greeting"><span id="greeting-text">Welcome,<br><?php echo $user_data['Name'];?> Pharmacy!</span></div>
                 <div> <a class="item" href="pharmacyHome.php">Home</a></div>
-                <div> <a class="item" href="pharmPrescribe.php">Prescribe Medicine</a></div>
                 <div> <a class="item" href="pharmSell.php" id="selected">Patient Purchase</a></div>
                 <div> <a class="item" href="pharmHistory.php">Purchase History</a></div>
             </div>
@@ -134,57 +133,56 @@ session_start();
             </div>
         </div>
 
-        <!-- Top Banner -->
-        <div id="welcome-banner">
-            <a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
-        </div>
-
         <div id="content-wrap">
 
-            <!-- Data Entry Box -->
-            <div class="card">
-                <form autocomplete="off" method="post">
-                    <div id="box-name">Please enter the referral information below:</div>
-        
-                    <div class="group">
-                        <input type="text" name="referral_id" required="required" /><span class="highlight"></span><span class="bar"></span>
-                        <label>Referral ID</label>
-                    </div>
- 
-                    <div class="btn-box">
-                        <button class="btn btn-login" type="submit">Submit</button>
-                    </div>
-
-                </form>
+            <!-- Top Banner -->
+            <div id="welcome-banner">
+            	<a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
             </div>
-            
+
             <!-- Output Information from Queries -->
-
-            <div class="card">
-                <div id="text"><span id="output-information">Referral Information<br>Referral ID: <?php echo $search_data1['ReferralID'];?></span></div>
-		        <div id="text"><span id="output-information">Patient ID: <?php echo $search_data1['PatientID'];?></span></div>
-		        <div id="text"><span id="output-information">Drug ID: <?php echo $search_data1['DrugID'];?></span></div>
-		        <div id="text"><span id="output-information">Quantity: <?php echo $search_data1['Quantity'];?></span></div>
-            </div>
-            <div class="card">
-                <div id="text"><span id="output-information"><br>Prescription Information<br>Drug Id: <?php echo $search_data2['Drug'];?></span></div>
-		        <div id="text"><span id="output-information">Prescription Name: <?php echo $search_data2['Name'];?></span></div>
-		        <div id="text"><span id="output-information">Prescription Type: <?php echo $search_data2['Type'];?></span></div>
-		        <div id="text"><span id="output-information">Market Cost: $<?php echo $search_data2['Cost'];?></span></div>
-            </div>
-	        <div class="card">
-                <div id="text"><span id="output-information"><br>Patient Information<br>Patient Name: <?php echo $search_data3['Last Name']; echo ", "; echo $search_data3['First Name'];?></span></div>
-		        <div id="text"><span id="output-information">Patient Insurance ID: <?php echo $search_data3['InsurancID'];?></span></div>
-		        <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo $search_data3['City']; echo $search_data3['State']; echo $search_data3['Zip'];?></span></div>
-            </div>
-        </div>
-
-        <!-- This Button will eventually write the transaction to the "purchases" database -->
-
-        <div class="btn-box">
-            <button class="btn btn-login" type="submit">Record Transaction</button>
-        </div>
+            <div id="data-info">
+            	<!-- Data Entry -->
+            	<div class="card">
+                	<form autocomplete="off" method="post">
+                    		<div id="box-name">Please enter the referral information below:</div>
         
+                    		<div class="group">
+                        		<input type="text" name="referral_id" required="required" /><span class="highlight"></span><span class="bar"></span>
+                    			<label>Referral ID</label>
+                            </div>
+    
+                    		<div class="btn-box">
+                        		<button class="btn btn-login" type="submit">Submit</button>
+                    		</div>
+                	</form>
+            	</div>
+            
+                <div class="card">
+                    <div id="text"><span id="output-information">Referral Information<br>Referral ID: <?php echo $search_data1['ReferralID'];?></span></div>
+                    <div id="text"><span id="output-information">Patient ID: <?php echo $search_data1['PatientID'];?></span></div>
+                    <div id="text"><span id="output-information">Drug ID: <?php echo $search_data1['DrugID'];?></span></div>
+                    <div id="text"><span id="output-information">Quantity: <?php echo $search_data1['Quantity'];?></span></div>
+                </div>
+                <div class="card">
+                    <div id="text"><span id="output-information"><br>Prescription Information<br>Drug Id: <?php echo $search_data2['Drug'];?></span></div>
+                    <div id="text"><span id="output-information">Prescription Name: <?php echo $search_data2['Name'];?></span></div>
+                    <div id="text"><span id="output-information">Prescription Type: <?php echo $search_data2['Type'];?></span></div>
+                    <div id="text"><span id="output-information">Market Cost: $<?php echo $search_data2['Cost'];?></span></div>
+                </div>
+                <div class="card">
+                    <div id="text"><span id="output-information"><br>Patient Information<br>Patient Name: <?php echo $search_data3['Last Name']; echo ", "; echo $search_data3['First Name'];?></span></div>
+                    <div id="text"><span id="output-information">Patient Insurance ID: <?php echo $search_data3['InsurancID'];?></span></div>
+                    <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo $search_data3['City']; echo $search_data3['State']; echo $search_data3['Zip'];?></span></div>
+                </div>
+    
+                <!-- This Button will eventually write the transaction to the "purchases" database -->
+                <div class="btn-box">
+                    <button class="btn btn-login" type="submit">Record Transaction</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
         <div id="footer">
             <p>Created by Dawson, Matt, and Davey</p>

@@ -155,7 +155,6 @@ session_start();
             <div class="section">
                 <div id="greeting"><span id="greeting-text">Welcome,<br><?php echo $user_data['Name'];?> Pharmacy!</span></div>
                 <div> <a class="item" href="pharmacyHome.php">Home</a></div>
-                <div> <a class="item" href="pharmPrescribe.php">Prescribe Medicine</a></div>
                 <div> <a class="item" href="pharmSell.php">Patient Purchase</a></div>
                 <div> <a class="item" href="pharmHistory.php" id="selected">Purchase History</a></div>
             </div>
@@ -167,46 +166,49 @@ session_start();
             </div>
         </div>
 
-        <!-- Top Banner -->
-        <div id="welcome-banner">
-            <a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
-        </div>
+        <div id="content-wrap">
 
-        <!-- Data Entry Box -->
+            <!-- Top Banner -->
+            <div id="welcome-banner">
+                <a id="logo" href="pharmacyHome.php">MyHealthPortal</a>
+            </div>
 
-        <div class="card">
-            <form autocomplete="off" method="post">
-                <div id="box-name">Please fill in at least one of the fields below:</div>
+            <!-- Output Information from Queries -->
+            <div id="data-info">
+                <!-- Data Entry Box -->
+                <div class="card">
+                    <form autocomplete="off" method="post">
+                        <div id="box-name">Please fill in at least one of the fields below:</div>
+                
+                        <div class="group">
+                            <input type="text" name="referral_id" required="required" /><span class="highlight"></span><span class="bar"></span>
+                            <label>Referral ID</label>
+                        </div>
+                        <div class="group">
+                            <input type="text" name="patient_id" required="required" /><span class="highlight"></span><span class="bar"></span>
+                            <label>Patient ID</label>
+                        </div>
         
-                <div class="group">
-                    <input type="text" name="referral_id"/><span class="highlight"></span><span class="bar"></span>
-                    <label>Referral ID</label>
-                </div>
-                <div class="group">
-                    <input type="text" name="patient_id"/><span class="highlight"></span><span class="bar"></span>
-                    <label>Patient ID</label>
-                </div>
- 
-                <div class="btn-box">
-                    <button class="btn btn-login" type="submit">Submit</button>
+                        <div class="btn-box">
+                            <button class="btn btn-login" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
 
-            </form>
-        </div>
-
-        <!-- Output Information from Queries -->
-
-        <div class="card">
-                <div id="text"><span id="output-information">Purchase History<br>Referral ID: <?php echo $search_data['ReferralID'];?></span></div>
-		        <div id="text"><span id="output-information">Patient ID: <?php echo $search_data['PatientID'];?></span></div>
-		        <div id="text"><span id="output-information">Insurance ID: <?php echo $search_data['InsuranceID'];?></span></div>
-		        <div id="text"><span id="output-information">Drug ID: <?php echo $search_data['DrugID'];?></span></div>
-		        <div id="text"><span id="output-information">Total Cost: $<?php echo $search_data['Cost'];?></span></div>
-        </div>
-        
-        <!-- Footer -->
-        <div id="footer">
-            <p>Created by Dawson, Matt, and Davey</p>
+                <!-- Output Information from Queries -->
+                <div class="card">
+                        <div id="text"><span id="output-information">Purchase History<br>Referral ID: <?php echo $search_data['ReferralID'];?></span></div>
+                        <div id="text"><span id="output-information">Patient ID: <?php echo $search_data['PatientID'];?></span></div>
+                        <div id="text"><span id="output-information">Insurance ID: <?php echo $search_data['InsuranceID'];?></span></div>
+                        <div id="text"><span id="output-information">Drug ID: <?php echo $search_data['DrugID'];?></span></div>
+                        <div id="text"><span id="output-information">Total Cost: $<?php echo $search_data['Cost'];?></span></div>
+                </div>
+                
+                <!-- Footer -->
+                <div id="footer">
+                    <p>Created by Dawson, Matt, and Davey</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>

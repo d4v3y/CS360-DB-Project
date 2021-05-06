@@ -38,7 +38,6 @@ session_start();
             <div class="section">
                 <div id="greeting"><span id="greeting-text">Welcome,<br><?php echo $user_data['Name'];?> Pharmacy!</span></div>
                 <div> <a class="item" href="pharmacyHome.php" id="selected">Home</a></div>
-                <div> <a class="item" href="pharmPrescribe.php">Prescribe Medicine</a></div>
                 <div> <a class="item" href="pharmSell.php">Patient Purchase</a></div>
                 <div> <a class="item" href="pharmHistory.php">Purchase History</a></div>
             </div>
