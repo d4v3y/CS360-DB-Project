@@ -7,9 +7,9 @@ session_start();
 
     $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
-    if ($con->connect_error) 
+    if ($con->connect_error)
     {
-        die("Failed to connect: " . $con->connect_error);
+      die("Failed to connect: " . $con->connect_error);
     }
  
     $user_data = check_login($con);
@@ -32,54 +32,55 @@ session_start();
             {
                 echo "Could not successfully run query from DB: " . mysql_error();
             }
-            
+                        
             if ($result1)
             {
                 if ($result1 && mysqli_num_rows($result1) > 0)
                 {
                     $search_data1 = mysqli_fetch_assoc($result1);
                 }
-	    	$query2 = "select *
-			   from Drugs
-			   where DrugID IN (
-				select DrugID
-				from Referral
-				where ReferralID = '$referralId')";
-		    $result2 = mysqli_query($con, $query2);
 
-		    if (!$result2) 
-		    {
-                echo "Could not successfully run query from DB: " . mysql_error();
-            }
+                $query2 = "select *
+                        from Drugs
+                        where DrugID IN (
+                        select DrugID
+                        from Referral
+                        where ReferralID = '$referralId')";
+                $result2 = mysqli_query($con, $query2);
 
-		    if ($result2)
-		    {
-		        if ($result2 && mysqli_num_rows($result2) > 0)
+                if (!$result2) 
                 {
-			        $search_data2 = mysqli_fetch_assoc($result2);
-                }
-		    }
-	    	
-                $query3 = "select *
-			              from Patients
-			              where PatientID IN (
-				          select PatientID
-				          from Referral
-				          where ReferralID = '$referralId')";
-		        $result3 = mysqli_query($con, $query3);
-		
-                if (!$result3) 
-		        {
                     echo "Could not successfully run query from DB: " . mysql_error();
                 }
-		
-                if ($result3)
-		        {
-		            if ($result3 && mysqli_num_rows($result3) > 0)
+
+                if ($result2)
+                {
+                    if ($result2 && mysqli_num_rows($result2) > 0)
                     {
-			            $search_data3 = mysqli_fetch_assoc($result3);
+                        $search_data2 = mysqli_fetch_assoc($result2);
                     }
-		        }
+                }
+                    
+                $query3 = "select *
+                            from Patients
+                            where PatientID IN (
+                            select PatientID
+                            from Referral
+                            where ReferralID = '$referralId')";
+                $result3 = mysqli_query($con, $query3);
+                
+                if (!$result3) 
+                {
+                    echo "Could not successfully run query from DB: " . mysql_error();
+                }
+                
+                if ($result3)
+                {
+                    if ($result3 && mysqli_num_rows($result3) > 0)
+                    {
+                        $search_data3 = mysqli_fetch_assoc($result3);
+                    }
+                }
             }
         }
     }
@@ -92,7 +93,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/pharmacy.css">
+    <link rel="stylesheet" href="./css/pharmacy.css">
 
     <link rel="icon" href="/health_icon16x16.png"/ type="image/png" sizes="16x16">
     <link rel="icon" href="/health_icon32x32.png"/ type="image/png" sizes="32x32">
@@ -152,7 +153,7 @@ session_start();
                     <div id="text"><span id="output-information">Quantity: <?php echo $search_data1['Quantity'];?></span></div>
                 </div>
                 <div class="card">
-                    <div id="text"><span id="output-information"><br>Prescription Information<br>Drug Id: <?php echo $search_data2['Drug'];?></span></div>
+                    <div id="text"><span id="output-information"><br>Prescription Information<br>Drug ID: <?php echo $search_data2['DrugID'];?></span></div>
                     <div id="text"><span id="output-information">Prescription Name: <?php echo $search_data2['Name'];?></span></div>
                     <div id="text"><span id="output-information">Prescription Type: <?php echo $search_data2['Type'];?></span></div>
                     <div id="text"><span id="output-information">Market Cost: $<?php echo $search_data2['Cost'];?></span></div>
@@ -160,7 +161,7 @@ session_start();
                 <div class="card">
                     <div id="text"><span id="output-information"><br>Patient Information<br>Patient Name: <?php echo $search_data3['Last Name']; echo ", "; echo $search_data3['First Name'];?></span></div>
                     <div id="text"><span id="output-information">Patient Insurance ID: <?php echo $search_data3['InsurancID'];?></span></div>
-                    <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo $search_data3['City']; echo ", "; echo $search_data3['State']; echo " "; echo $search_data3['Zip'];?></span></div>
+                    <div id="text"><span id="output-information">Patient Address: <?php echo $search_data3['Street']; echo ", "; echo $search_data3['City']; echo ", "; echo $search_data3['State']; echo " "; echo $search_data3['Zip'];?></span></div>
                 </div>
     
                 <!-- This Button will eventually write the transaction to the "purchases" database -->

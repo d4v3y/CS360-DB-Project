@@ -1,71 +1,18 @@
 <?php
 session_start();
-   
+
     error_reporting(0);
     include("includes/dbconn.php");
     include("functions.php");
- 
+
     $con = new mysqli($servername, $username, "", "db1", $sqlport, $socket);
 
     if ($con->connect_error) {
       die("Failed to connect: " . $con->connect_error);
     }
- 
+
     $user_data = check_login($con);
-    $result1 = null;
-    $result2 = null;
-
-    if ($_SERVER['REQUEST_METHOD'] == "POST")
-    {
-        $drugName = $_POST['drug_name'];
-        $drugId = $_POST['drug_id'];
-        $quantity = $_POST['quantity'];
-        $userName = $_POST['user_name'];
-        $patientId = $_POST['patient_id'];
-        $symptom = $_POST['symptom'];
-
-        if (!empty($drugName))
-        {
-            $query1 = "select * 
-                       from Drugs
-                       where Name = '$drugName'";
-            $result1 = mysqli_query($con, $query1);
-
-            if (!$result1)
-            {
-                echo "Could not successfully run query from DB: " . mysql_error();
-            }
-
-            if ($result1)
-            {
-                if ($result1 && mysqli_num_rows($result1) > 0)
-                {
-                    echo"<table border='1'>";
-                    echo"<tr><td>Prescription Name</td><td>Prescription ID</td><td>Type</td><td>Cost</td></tr>\n";
-                    while($row = mysqli_fetch_assoc($result1))
-                    {
-                        echo"<tr><td>{$row['Name']}</td><td>{$row['DrugID']}</td><td>{$row['Type']}</td><td>{$row['Cost']}</td></tr>\n";
-                    }
-                    echo"</table>";
-                }
-            }
-        }
-
-        if (!empty($drugId) && !empty($quantity) && !empty($userName) && !empty($patientId) && !empty($symptom))
-        {
-            $query2 = "INSERT INTO Referral (Username, PatientID, Symptom, DrugID, Quantity)
-                       VALUES ('$userName', $patientId, '$symptom', $drugId, $quantity)";
-            $result2 = mysqli_query($con, $query2);
-
-	        if ($result2)
-	        {
-                echo "New record created successfully";
-            }
-	        else{
-		        echo "Error: " . $query2 . "<br>" . mysqli_error($con);
-	        }
-        }
-    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +34,7 @@ session_start();
 
     <!-- Page Wrapper -->
     <div id="page-container">
-        
+
         <!-- Sidebar -->
         <div id="sidebar">
             <div class="section">
@@ -95,7 +42,6 @@ session_start();
                 <div> <a class="item" href="doctorHome.php">Home</a></div>
                 <div> <a class="item" href="docPatients.php">Patient Info</a></div>
                 <div> <a class="item" href="docDiagnose.php" id="selected">Diagnose Patient</a></div>
-                <div> <a class="item" href="docPrescribe.php">Patient Services</a></div>
             </div>
 
             <div class="section">
@@ -105,31 +51,33 @@ session_start();
             </div>
         </div>
 
+        <div id="content-wrap">
+
         <!-- Top Banner -->
         <div id="welcome-banner">
             <a id="logo" href="doctorHome.php">MyHealthPortal</a>
         </div>
 
+        <div id="data-info"
         <!-- Data Entry -->
-        <div class="card">
+        <div class="card" style="padding-right:60px;">
             <form autocomplete="off" method="post">
                 <div id="box-name">Please enter the prescription name below to search:</div>
-        
+
                 <div class="group">
                     <input type="text" name="drug_name" required="required" /><span class="highlight"></span><span class="bar"></span>
-                        <label>Prescription Name</label>
+                        <label>Medication Name</label>
                 </div>
-    
+
                 <div class="btn-box">
                     <button class="btn btn-login" type="submit">Submit</button>
                 </div>
             </form>
         </div>
-
         <div class="card">
             <form autocomplete="off" method="post">
                 <div id="box-name">Please fill out the patient referral form below:</div>
-        
+
                 <div class="group">
                     <input type="text" name="drug_id" required="required" /><span class="highlight"></span><span class="bar"></span>
                         <label>Prescription ID</label>
@@ -150,13 +98,68 @@ session_start();
                     <input type="text" name="symptom" required="required" /><span class="highlight"></span><span class="bar"></span>
                         <label>Symptoms</label>
                 </div>
-    
+
                 <div class="btn-box">
                     <button class="btn btn-login" type="submit">Submit</button>
                 </div>
             </form>
         </div>
-        
+        <div class="card">
+            <?php
+                $result1 = null;
+                $result2 = null;
+
+                if ($_SERVER['REQUEST_METHOD'] == "POST")
+                {
+                    $drugName = $_POST['drug_name'];
+                    $drugId = $_POST['drug_id'];
+                    $quantity = $_POST['quantity'];
+                    $userName = $_POST['user_name'];
+                    $patientId = $_POST['patient_id'];
+                    $symptom = $_POST['symptom'];
+
+                    if (!empty($drugName))
+                    {
+                        $query1 = "select *
+                                from Drugs
+                                where Name = '$drugName'";
+                        $result1 = mysqli_query($con, $query1);
+
+                        if (!$result1)
+                        {
+                            echo "Could not successfully run query from DB: " . mysql_error();
+                        }
+
+                        if ($result1)
+                        {
+                            if ($result1 && mysqli_num_rows($result1) > 0)
+                            {
+                                echo"<table id='table' border='1'>";
+                                echo"<tr><td>Prescription Name</td><td>Prescription ID</td><td>Type</td><td>Cost</td></tr>\n";
+                                while($row = mysqli_fetch_assoc($result1)) {
+                                    echo"<tr><td>{$row['Name']}</td><td>{$row['DrugID']}</td><td>{$row['Type']}</td><td>{$row['Cost']}</td></tr>\n";
+                                }
+                                echo"</table>";
+                            }
+                        }
+                    }
+
+                    if (!empty($drugId) && !empty($quantity) && !empty($userName) && !empty($patientId) && !empty($symptom))
+                    {
+                        $query2 = "INSERT INTO Referral (Username, PatientID, Symptom, DrugID, Quantity) VALUES ('$userName', $patientId, '$symptom', $drugId, $quantity)";
+                        $result2 = mysqli_query($con, $query2);
+
+                        if ($result2) {
+                            echo "New record created successfully";
+                        } else {
+                            echo "Error: " . $query2 . "<br>" . mysqli_error($con);
+                        }
+                    }
+                }
+            ?>
+        </div>
+     </div>
+   </div>
         <!-- Footer -->
         <div id="footer">
             <p>Created by Dawson, Matt, and Davey</p>

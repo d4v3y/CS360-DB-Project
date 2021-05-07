@@ -41,7 +41,6 @@ session_start();
                 <div> <a class="item" href="doctorHome.php" id="selected">Home</a></div>
                 <div> <a class="item" href="docPatients.php">Patient Info</a></div>
                 <div> <a class="item" href="docDiagnose.php">Diagnose Patient</a></div>
-                <div> <a class="item" href="docPrescribe.php">Patient Services</a></div>
             </div>
 
             <div class="section">
