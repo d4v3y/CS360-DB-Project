@@ -1,3 +1,4 @@
+<!-- Used for local machine use -->
 <?php
 $dbhost = "localhost";
 $dbuser = "root";
