@@ -17,11 +17,6 @@
 
 ## Pharmacy Portal:
 
-| Syntax      | Description |
-| ----------- | ----------- |
-| Header      | Title       |
-| Paragraph   | Text        |
-
 #### Pharmacy ID:
 - Purchase ID
 - Drug ID
