@@ -17,28 +17,35 @@
 
 ## Tables Implemented:
 
-| Interactions |
-|--------------|
-| PatientID    |
-| DrugID       |
-| Symptom      |
+<table>
+  <tr><th>Interactions</th><th>Patients</th></tr>
+  
+  <tr>
+    <td>
+    | Interactions |
+    |--------------|
+    | PatientID    |
+    | DrugID       |
+    | Symptom      |
 
-| Patients      |
-|---------------|
-| **PatientID** |
-| InsuranceID   |
-| Access        |
-| First Name    |
-| Last Name     |
-| Age           |
-| Annual Income |
-| SSN           |
-| Street        |
-| City          |
-| State         |
-| Zip           |
-
-
+    </td><td>
+    | Patients      |
+    |---------------|
+    | **PatientID** |
+    | InsuranceID   |
+    | Access        |
+    | First Name    |
+    | Last Name     |
+    | Age           |
+    | Annual Income |
+    | SSN           |
+    | Street        |
+    | City          |
+    | State         |
+    | Zip           |
+    </td>
+  </tr>
+</table>
 
 
 ## Scheme Used:
