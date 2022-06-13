@@ -10,9 +10,9 @@
 - Phase III comprehensive project report due during your demo on May 3 - 7
 
 
-### Primary Application: Pharmacy Portal
+### <em>Primary Application: Pharmacy Portal</em>
 
-### Secondary Portal: Insurance Portal
+### <em>Secondary Portal: Insurance Portal</em>
 
 
 ## Tables Implemented:
