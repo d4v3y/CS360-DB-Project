@@ -17,50 +17,7 @@
 
 ## Tables Implemented:
 
-<table>
-<tr><th>Interactions</th><th>Patients</th></tr>
-<tr><td>
-
-| Interactions |
-|--------------|
-| PatientID    |
-| DrugID       |
-| Symptom      |
-
-</td><td>
-
-| Patients      |
-|---------------|
-| **PatientID** |
-| InsuranceID   |
-| Access        |
-| First Name    |
-| Last Name     |
-| Age           |
-| Annual Income |
-| SSN           |
-| Street        |
-| City          |
-| State         |
-| Zip           |
-
-</td></tr> </table>
-
-<table>
-<tr><th>Table 1 Heading 1 </th><th>Table 1 Heading 2</th></tr>
-<tr><td>
-
-|Table 1| Middle | Table 2|
-|--|--|--|
-|a| not b|and c |
-
-</td><td>
-
-|b|1|2|3| 
-|--|--|--|--|
-|a|s|d|f|
-
-</td></tr> </table>
+![Table Relationship Graph](/CS360-DB-Project/Graphics/relationshipGraph.png)
 
 ## Scheme Used:
 
