@@ -19,9 +19,8 @@
 
 <table>
   <tr><th>Interactions</th><th>Patients</th></tr>
-  
-  <tr>
-    <td>
+  <tr><td>
+    
     | Interactions |
     |--------------|
     | PatientID    |
@@ -29,6 +28,7 @@
     | Symptom      |
 
     </td><td>
+    
     | Patients      |
     |---------------|
     | **PatientID** |
@@ -43,8 +43,8 @@
     | City          |
     | State         |
     | Zip           |
-    </td>
-  </tr>
+    
+  </td></tr>
 </table>
 
 
