@@ -7,7 +7,7 @@
 ### Stages:
 - Phase I project report on data modeling due on February 18
 - Phase II project report on normalization and interim demo due on April 13/15
-- Phase III comprehensive project report due during your demo on May 3 - 7
+- Phase III comprehensive project report due during your demo on May 6
 
 
 #### <em>Primary Application: Pharmacy Portal</em>
