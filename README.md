@@ -17,7 +17,7 @@
 
 ## Tables Implemented:
 
-![Table Relationship Graph](/CS360-DB-Project/Graphics/relationshipGraph.png)
+![Table Relationship Graph](/Graphics/relationshipGraph.png)
 
 ## Scheme Used:
 
