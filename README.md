@@ -21,7 +21,7 @@ Primary keys are underlined<br>
 
 ## Scheme Used:
 
-### *SSDO(Patient(primary),Insurance, Pharmacy)*
+<em>SSDO(Patient(primary),Insurance, Pharmacy)</em>
 
 ## Technology:
 - IDEs - Visual Studio, MySQL Workbench
