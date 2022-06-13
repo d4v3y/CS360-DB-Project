@@ -18,34 +18,33 @@
 ## Tables Implemented:
 
 <table>
-  <tr><th>Interactions</th><th>Patients</th></tr>
-  <tr><td>
-    
-    | Interactions |
-    |--------------|
-    | PatientID    |
-    | DrugID       |
-    | Symptom      |
+<tr><th>Interactions</th><th>Patients</th></tr>
+<tr><td>
 
-    </td><td>
-    
-    | Patients      |
-    |---------------|
-    | **PatientID** |
-    | InsuranceID   |
-    | Access        |
-    | First Name    |
-    | Last Name     |
-    | Age           |
-    | Annual Income |
-    | SSN           |
-    | Street        |
-    | City          |
-    | State         |
-    | Zip           |
-    
-  </td></tr>
-</table>
+| Interactions |
+|--------------|
+| PatientID    |
+| DrugID       |
+| Symptom      |
+
+</td><td>
+
+| Patients      |
+|---------------|
+| **PatientID** |
+| InsuranceID   |
+| Access        |
+| First Name    |
+| Last Name     |
+| Age           |
+| Annual Income |
+| SSN           |
+| Street        |
+| City          |
+| State         |
+| Zip           |
+
+</td></tr> </table>
 
 <table>
 <tr><th>Table 1 Heading 1 </th><th>Table 1 Heading 2</th></tr>
