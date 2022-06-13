@@ -16,7 +16,7 @@
 
 
 ## Tables Implemented:
-Primary keys are underlined
+Primary keys are underlined<br>
 ![Table Relationship Graph](/Graphics/relationshipGraph.png)
 
 ## Scheme Used:
