@@ -15,54 +15,31 @@
 ### Secondary Portal: Insurance Portal
 
 
-## Pharmacy Portal:
+## Tables Implemented:
 
-#### Pharmacy ID:
-- Purchase ID
-- Drug ID
-- Interactions
+| Interactions |
+|--------------|
+| PatientID    |
+| DrugID       |
+| Symptom      |
 
-#### Purchase ID:
-- Patient ID
-- Drug ID
-- Quantity
-- Cost
-- Insurance ID
-- Referral ID
+| Patients      |
+|---------------|
+| **PatientID** |
+| InsuranceID   |
+| Access        |
+| First Name    |
+| Last Name     |
+| Age           |
+| Annual Income |
+| SSN           |
+| Street        |
+| City          |
+| State         |
+| Zip           |
 
-#### Interaction ID:
-- Drug ID
-- Patient ID
-- Interaction
 
-#### Drug ID:
-- Name
-- Type
 
-## Insurance Portal:
-
-#### Insurance ID:
-- Name
-- Annual Premium
-- Lab ID
-- Provider ID
-- Medication ID
-
-#### Lab ID:
-- Name
-- Cost
-- Co-Pay
-
-#### Medication ID:
-- Drug ID
-- Name
-- Cost
-- Co-pay
-
-#### Provider ID:
-- Name
-- Cost
-- Co-Pay
 
 ## Scheme Used:
 
